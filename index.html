@@ -1,15 +1,23 @@
-Hello World
-wat<br/>
-NNNNNOOOOOO
+Hello Bluetooth
+<br/>
 
+<input id="nameprefixtxt" type="text"/>
+<br/>
 <button id="connectbtn">CONNECT</button>
+<br/>
+<label id="prefixlbl"/>
+
 
 <script type="text/javascript">
-  document.getElementById("connectbtn").onclick = function(){
-navigator.bluetooth.requestDevice({ filters: [
+  
+  document.getElementById("connectbtn").onclick = function()
+  {
+    var prefix = document.getElementById("nameprefixtxt").value;
+    document.getElementById("prefixlbl").innerHTML = prefix;
+    navigator.bluetooth.requestDevice({ filters: [
   { 
    // services: [0x180F,0x1801,0x180A,'de9ac80b-d7a7-4a31-8524-47473b381a7e'] 
-    namePrefix: 'JBL'
+    namePrefix: prefix
   }
   ] })
 .then(device => { alert('somthing');/* ... */ })
