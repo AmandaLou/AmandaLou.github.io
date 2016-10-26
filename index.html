@@ -1,1 +1,20 @@
 Hello World
+wat<br/>
+NNNNNOOOOOO
+
+<button id="connectbtn">CONNECT</button>
+
+<script type="text/javascript">
+  document.getElementById("connectbtn").onclick = function(){
+navigator.bluetooth.requestDevice({ filters: [{ services: ['de9ac80b-d7a7-4a31-8524-47473b381a7e'] }] })
+.then(device => { alert('somthing');/* ... */ })
+.catch(error => { 
+                  alert('something else'); 
+                  console.log(error); 
+  
+                }
+        );
+  };
+
+</script>
+
