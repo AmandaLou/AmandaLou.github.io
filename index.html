@@ -6,7 +6,7 @@ NNNNNOOOOOO
 
 <script type="text/javascript">
   document.getElementById("connectbtn").onclick = function(){
-navigator.bluetooth.requestDevice({ filters: [{ services: ['de9ac80bd7a74a31852447473b381a7e'] }] })
+navigator.bluetooth.requestDevice({ filters: [{ services: [0x180F,0x1801,0x180A,'de9ac80b-d7a7-4a31-8524-47473b381a7e'] }] })
 .then(device => { alert('somthing');/* ... */ })
 .catch(error => { 
                   alert('something else'); 
