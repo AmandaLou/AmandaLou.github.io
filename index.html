@@ -27,7 +27,6 @@ Hello Bluetooth
     namePrefix: prefix
   }
   ] })
-.then(device => { alert('somthing');/* ... */ })
 .then(device => {
     logit('Connecting to GATT Server...');
     return device.gatt.connect();
