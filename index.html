@@ -14,22 +14,39 @@ Hello Bluetooth
   {
     var prefix = document.getElementById("nameprefixtxt").value;
     document.getElementById("prefixlbl").innerHTML = prefix;
+    serviceUuid = 'a5aeb605-90ed-4294-b96f-01c34a32b1ba';
     navigator.bluetooth.requestDevice({ filters: [
   { 
     //services: ['1800'] 
    // services: ['a5aeb605-90ed-4294-b96f-01c34a32b1ba'] 
-    services: [0x1800] 
+    //services: [0x1800] 
    //services: ['de9ac80b-d7a7-4a31-8524-47473b381a7e'] 
-    //namePrefix: prefix
+    namePrefix: prefix
   }
   ] })
 .then(device => { alert('somthing');/* ... */ })
-.catch(error => { 
-                  alert('something else'); 
-                  console.log(error); 
-  
-                }
-        );
+.then(device => {
+    log('Connecting to GATT Server...');
+    return device.gatt.connect();
+  })
+  .then(server => {
+    log('Getting Service...');
+    return server.getPrimaryService(serviceUuid);
+  })
+  .then(service => {
+    log('Getting Characteristic...');
+    // Get all characteristics.
+    return service.getCharacteristics();
+  })
+  .then(characteristics => {
+    log('> Characteristics: ' +
+      characteristics.map(c => c.uuid).join('\n' + ' '.repeat(19)));
+  })
+  .catch(error => {
+    log('Argh! ' + error);
+    alert('ERROR');
+  });
+
   };
 
 </script>
