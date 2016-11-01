@@ -15,6 +15,9 @@ Hello Bluetooth
     var prefix = document.getElementById("nameprefixtxt").value;
     document.getElementById("prefixlbl").innerHTML = prefix;
     serviceUuid = 'a5aeb605-90ed-4294-b96f-01c34a32b1ba';
+    var logit = function(moreText){
+       document.getElementById("prefixlbl").innerHTML = document.getElementById("prefixlbl").innerHTML + "<br/>" +moreText;
+    };
     navigator.bluetooth.requestDevice({ filters: [
   { 
     //services: ['1800'] 
@@ -26,24 +29,25 @@ Hello Bluetooth
   ] })
 .then(device => { alert('somthing');/* ... */ })
 .then(device => {
-    log('Connecting to GATT Server...');
+    logit('Connecting to GATT Server...');
     return device.gatt.connect();
   })
   .then(server => {
-    log('Getting Service...');
+    logit('Getting Service...');
     return server.getPrimaryService(serviceUuid);
   })
   .then(service => {
-    log('Getting Characteristic...');
+    logit('Getting Characteristic...');
     // Get all characteristics.
     return service.getCharacteristics();
   })
   .then(characteristics => {
-    log('> Characteristics: ' +
+    logit('> Characteristics: ' +
       characteristics.map(c => c.uuid).join('\n' + ' '.repeat(19)));
+      
   })
   .catch(error => {
-    log('Argh! ' + error);
+    logit('Argh! ' + error);
     alert('ERROR');
   });
 
