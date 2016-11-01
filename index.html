@@ -16,7 +16,8 @@ Hello Bluetooth
     document.getElementById("prefixlbl").innerHTML = prefix;
     navigator.bluetooth.requestDevice({ filters: [
   { 
-    services: ['1800'] 
+    //services: ['1800'] 
+    services: ['a5aeb605-90ed-4294-b96f-01c34a32b1ba'] 
     //services: [0x180F,0x1801,0x180A] 
    //services: [0x180F,0x1801,0x180A,'de9ac80b-d7a7-4a31-8524-47473b381a7e'] 
     //namePrefix: prefix
